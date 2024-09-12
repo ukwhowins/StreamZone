@@ -4,6 +4,9 @@ body {
     padding: 0;
     background-color: #111;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
@@ -43,8 +46,8 @@ nav ul li a:hover {
     background-color: #555;
 }
 
-#live-stream {
-    padding: 20px;
+main {
+    flex: 1;
 }
 
 iframe {
@@ -52,4 +55,132 @@ iframe {
     height: 80vh;
     border: none;
     border-radius: 10px;
+}
+
+.hero {
+    background-image: url('hero-background.jpg'); /* Placeholder for your background image */
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 5vw 2vw;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+}
+
+.featured-content {
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.featured-content h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.featured-content .card {
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    line-height: 300px; /* Center text vertically */
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    text-decoration: none;
+}
+
+.featured-content .card:hover .card-info {
+    opacity: 1;
+}
+
+.card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-align: left;
+}
+
+.card-info h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.card-info p {
+    margin: 5px 0;
+    font-size: 1em;
+}
+
+/* Mobile devices (up to 600px) */
+@media (max-width: 600px) {
+    .hero {
+        padding: 50px 10px;
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 1.2em;
+    }
+
+    .featured-content .card {
+        width: 90%;
+        height: 200px;
+        line-height: 200px;
+    }
+
+    .card-info h3 {
+        font-size: 1.2em;
+    }
+
+    .card-info p {
+        font-size: 0.9em;
+    }
+}
+
+/* Tablets and small desktops (601px to 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .hero {
+        padding: 70px 20px;
+        font-size: 2.5em;
+    }
+
+    .hero p {
+        font-size: 1.3em;
+    }
+
+    .featured-content .card {
+        width: 80%;
+        height: 250px;
+        line-height: 250px;
+    }
+
+    .card-info h3 {
+        font-size: 1.4em;
+    }
+
+    .card-info p {
+        font-size: 1em;
+    }
 }

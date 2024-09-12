@@ -15,21 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
         setActiveButton('live-matches-button');
     });
 
-    document.getElementById('last-watched-button').addEventListener('click', function() {
-        let lastWatched = localStorage.getItem('lastWatched');
-        if (lastWatched) {
-            loadPage(lastWatched);
-        } else {
-            alert('No last watched content available.');
-        }
-        setActiveButton('last-watched-button');
-    });
-
     function loadPage(url) {
         document.getElementById('content-frame').src = url;
-        if (!url.startsWith('http')) {
-            localStorage.setItem('lastWatched', url);
-        }
     }
 
     function setActiveButton(id) {
@@ -38,4 +25,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         document.getElementById(id).classList.add('active');
     }
+
+    // Prevent unwanted new tabs/windows and handle navigation
+    const iframe = document.getElementById('content-frame');
+
+    iframe.addEventListener('load', function() {
+        const iframeWindow = iframe.contentWindow;
+
+        // Prevent pop-ups
+        iframeWindow.open = function() {
+            console.log('Blocked attempt to open new window');
+        };
+
+        // Intercept any attempt to change the location of the iframe
+        iframeWindow.addEventListener('beforeunload', function(event) {
+            event.preventDefault();
+            event.returnValue = ''; // Required for modern browsers
+        });
+
+        // Handle cross-origin messaging (if needed)
+        iframeWindow.addEventListener('message', function(event) {
+            if (event.origin !== 'https://coolmaan.store') {
+                event.stopPropagation();
+            }
+        });
+    });
 });
