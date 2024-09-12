@@ -5,14 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
         setActiveButton('home-button');
     });
 
-    document.getElementById('movies-button').addEventListener('click', function() {
-        loadPage('https://asd.quest/movies/');
-        setActiveButton('movies-button');
-    });
-
-    document.getElementById('series-button').addEventListener('click', function() {
-        loadPage('https://asd.quest/series/');
-        setActiveButton('series-button');
+    document.getElementById('streaming-button').addEventListener('click', function() {
+        loadPage('https://coolmaan.store/');
+        setActiveButton('streaming-button');
     });
 
     document.getElementById('live-matches-button').addEventListener('click', function() {
