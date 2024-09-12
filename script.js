@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function loadPage(url) {
         document.getElementById('content-frame').src = url;
+        if (!url.startsWith('http')) {
+            localStorage.setItem('lastWatched', url);
+        }
     }
 
     function setActiveButton(id) {
@@ -35,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Prevent pop-ups
         iframeWindow.open = function() {
             console.log('Blocked attempt to open new window');
+            // Optionally notify user or log
         };
 
         // Intercept any attempt to change the location of the iframe
@@ -45,9 +49,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Handle cross-origin messaging (if needed)
         iframeWindow.addEventListener('message', function(event) {
-            if (event.origin !== 'https://coolmaan.store') {
+            if (event.origin !== 'https://ukwhowins.github.io/StreamZone.github.io/#') {
                 event.stopPropagation();
+                // Optionally notify user or log
             }
         });
     });
+
+    // Ensure no unnecessary warning is set
+    window.onbeforeunload = null;
 });
